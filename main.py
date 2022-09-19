@@ -2,11 +2,14 @@ important_metrics = ['просмотров', 'лайков', 'комментар
 cost_metrics = []
 
 for i in important_metrics:
-    print(f'Оцените важность {i} от 1 до 10')
-    cost = input()
-    if int(cost) > 10 or int(cost) < 1:
-        print('Вы указали недопустимое число')
-    cost_metrics.append(cost)
+    while True:
+        cost = int(input(f'Оцените ценность {i} от 1 до 10'))
+        if cost < 1 or cost > 10:
+            print('Вы ввели неправильное значение. Попробуйте ещё раз')
+            continue
+        else:
+            cost_metrics.append(cost)
+            break
 
 
 print(important_metrics)
