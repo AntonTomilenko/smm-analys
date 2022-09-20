@@ -2,7 +2,7 @@ def cicle_cost_collect(metrics_kit, collection):
     for i in metrics_kit:
         while True:
             try:
-                cost = int(input(f'Оцените важность {i} от 1 до 10\n'))
+                cost = int(input(f'Оцените важность {i} от 1 до 10: '))
             except ValueError:
                 print('Похоже, вы ввели не целое число, а что-то другое — так не пойдёт')
                 continue
