@@ -3,13 +3,22 @@ import telebot
 import pandas as pd
 from sheet_values import *
 
-bot = telebot.TeleBot('5673378415:AAHLJSefykV4u-czdTOlQaKDrc4OzUfcGak')
+TOKEN = None
+
+with open("token.txt") as f:
+    TOKEN = f.read().strip()
+
+bot = telebot.TeleBot(TOKEN)
 costs = []
 
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    text = 'Теперь я работаю. Напишите «Поехали» и я начну считать.'
+    text = '''Здравствуйте. Я бот, который считает ER учитывая важность разных типов взаимодействий: лайков, комментариев, репостов.
+    
+Новый показатель мой создатель назвал индекс эффективного вовлечения или Effective Engagement Index (EEI). Знать его полезно, чтобы понимать, насколько качественно вовлечена аудиториия во взаимодействие с контентом.
+
+Напишите «Поехали» и я начну считать.'''
     bot.send_message(message.chat.id, text, parse_mode='html')
 
 
