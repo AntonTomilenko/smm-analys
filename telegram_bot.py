@@ -86,7 +86,7 @@ def doc_receipt(message):
 &#128173; Среднее число комментариев — {means[1]}
 &#128266; Среднее число репостов — {means[2]}
 
-<b>Ваш индекс эффективного вовлечения: {effective_engagement_index}%</b>'''
+<b>Индекс эффективного вовлечения (EEI): {effective_engagement_index}%</b>'''
 
         bot.send_message(message.chat.id, final_answer, parse_mode='html')
 
