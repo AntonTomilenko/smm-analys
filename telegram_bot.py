@@ -2,6 +2,7 @@ import os
 import telebot
 import pandas as pd
 from sheet_values import *
+import re
 
 TOKEN = None
 
@@ -38,11 +39,24 @@ def costs_fixation(message):
     global costs
     costs = message.text.split(' ')
 
-    msg = f'<b>Принято. Фиксирую.</b>\n\nВажность лайков: {costs[0]}\nВажность комментариев: {costs[1]}\nВажность репостов: {costs[2]}'
+    try:
+        for i in costs:
+            float(i)
+    except ValueError:
+        bot.send_message(message.chat.id, '''Похоже, вы ввели не три числа, а что-то другое.\
+ Напишите «Поехали» и введите правильные значения.''')
+    else:
+        msg = f'''<b>Принято. Фиксирую.</b>
 
-    bot.send_message(message.chat.id, msg, parse_mode='html')
-    bot.send_message(message.chat.id, '''Последний шаг: пришлите выгрузку в виде Excel-таблицы из LiveDune.
+Важность лайков: {costs[0]}
+Важность комментариев: {costs[1]}
+Важность репостов: {costs[2]}
 
+Если вы заметили, что ввели число за диапазоном от 1 до 10 — напишите «Поехали» и введите новые правильные значения.'''
+
+        bot.send_message(message.chat.id, msg, parse_mode='html')
+        bot.send_message(message.chat.id, '''Последний шаг: пришлите выгрузку в виде Excel-таблицы из LiveDune.
+    
 Чтобы её скачать, зайдите в любой аккаунт в LiveDune и нажмите на иконку скачивания в левом верхнем углу.''')
 
 
