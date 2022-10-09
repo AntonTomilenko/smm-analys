@@ -1,8 +1,6 @@
-import os
 import telebot
 import pandas as pd
 from sheet_values import *
-import re
 
 TOKEN = None
 
@@ -11,7 +9,6 @@ with open("token.txt") as f:
 
 bot = telebot.TeleBot(TOKEN)
 costs = []
-
 
 @bot.message_handler(commands=['start'])
 def start(message):
